@@ -33,6 +33,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.cupcake.data.DataSource
+import com.example.cupcake.ui.OrderSummaryScreen
 import com.example.cupcake.ui.OrderViewModel
 import com.example.cupcake.ui.SelectOptionScreen
 import com.example.cupcake.ui.StartOrderScreen
@@ -104,9 +105,24 @@ fun CupcakeApp(modifier: Modifier = Modifier, viewModel: OrderViewModel = viewMo
                 val context = LocalContext.current
                 SelectOptionScreen(
                     subtotal = uiState.price,
-                    options = DataSource.flavors.map { id -> context.resources.getString(id) }
+                    options = DataSource.flavors.map { id -> context.resources.getString(id) },
+                    onSelectionChanged = {viewModel.setFlavor(it)}
                 )
             }
+
+            composable(route = CupcakeScreen.Pickup.name) {
+                SelectOptionScreen(
+                    subtotal = uiState.price,
+                    options = uiState.pickupOptions,
+                    onSelectionChanged = {viewModel.setFlavor(it)}
+                )
+            }
+
+            composable(route = CupcakeScreen.Summary.name){
+                OrderSummaryScreen(orderUiState = uiState)
+            }
+
+
         }
     }
 }
