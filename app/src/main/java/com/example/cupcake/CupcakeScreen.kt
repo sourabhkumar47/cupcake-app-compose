@@ -30,8 +30,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.cupcake.data.DataSource
 import com.example.cupcake.ui.OrderSummaryScreen
 import com.example.cupcake.ui.OrderViewModel
@@ -72,7 +74,10 @@ fun CupcakeAppBar(
 }
 
 @Composable
-fun CupcakeApp(modifier: Modifier = Modifier, viewModel: OrderViewModel = viewModel()) {
+fun CupcakeApp(
+    viewModel: OrderViewModel = viewModel(),
+    navController:NavHostController = rememberNavController()
+) {
     // TODO: Create NavController
 
     // TODO: Get current back stack entry
@@ -121,8 +126,6 @@ fun CupcakeApp(modifier: Modifier = Modifier, viewModel: OrderViewModel = viewMo
             composable(route = CupcakeScreen.Summary.name){
                 OrderSummaryScreen(orderUiState = uiState)
             }
-
-
         }
     }
 }
