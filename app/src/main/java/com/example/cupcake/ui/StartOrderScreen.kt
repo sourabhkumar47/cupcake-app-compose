@@ -20,6 +20,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -31,6 +32,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,6 +48,7 @@ import com.example.cupcake.data.DataSource.quantityOptions
 fun StartOrderScreen(
     quantityOptions: List<Pair<Int, Int>>,
     // TODO: add onNextButtonClicked
+    onNextButtonClicked: () -> Unit,
     modifier: Modifier = Modifier
 ){
     Column(
@@ -92,5 +95,9 @@ fun SelectQuantityButton(
 @Preview
 @Composable
 fun StartOrderPreview(){
-    StartOrderScreen(quantityOptions = quantityOptions)
+    StartOrderScreen(
+        quantityOptions = quantityOptions,
+        onNextButtonClicked = {},
+        modifier = Modifier.fillMaxSize().padding(dimensionResource(R.dimen.padding_medium))
+    )
 }
