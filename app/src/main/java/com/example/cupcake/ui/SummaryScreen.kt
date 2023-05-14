@@ -18,6 +18,7 @@ package com.example.cupcake.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -28,6 +29,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -45,9 +47,11 @@ import com.example.cupcake.ui.components.FormattedPriceLabel
 fun OrderSummaryScreen(
     orderUiState: OrderUiState,
     // TODO: add onCancelButtonClicked
+    onCancelButtonClicked: () -> Unit,
     // TODO: add onSendButtonClicked
+    onSendButtonClicked: (String, String) -> Unit,
     modifier: Modifier = Modifier
-){
+) {
     val resources = LocalContext.current.resources
 
     val numberOfCupcakes = resources.getQuantityString(
@@ -74,7 +78,7 @@ fun OrderSummaryScreen(
         Pair(stringResource(R.string.pickup_date), orderUiState.date)
     )
 
-    Column (
+    Column(
         modifier = modifier.padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -105,8 +109,11 @@ fun OrderSummaryScreen(
 
 @Preview
 @Composable
-fun OrderSummaryPreview(){
+fun OrderSummaryPreview() {
     OrderSummaryScreen(
         orderUiState = OrderUiState(0, "Test", "Test", "$300.00"),
+        onSendButtonClicked = { subject: String, summary: String -> },
+        onCancelButtonClicked = {},
+        modifier = Modifier.fillMaxHeight()
     )
 }
