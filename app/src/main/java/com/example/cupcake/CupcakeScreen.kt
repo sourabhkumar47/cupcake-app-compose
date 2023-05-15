@@ -140,7 +140,9 @@ fun CupcakeApp(
                 OrderSummaryScreen(
                     orderUiState = uiState,
                     onCancelButtonClicked = {},
-                    onSendButtonClicked = { subect: String, summary: String -> },
+                    onSendButtonClicked = { subject: String, summary: String ->
+
+                    },
                     modifier = Modifier.fillMaxHeight()
                 )
             }
