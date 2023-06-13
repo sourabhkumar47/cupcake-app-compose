@@ -12,6 +12,7 @@ import androidx.navigation.testing.TestNavHostController
 import com.example.cupcake.CupcakeApp
 import com.example.cupcake.CupcakeScreen
 import com.example.cupcake.R
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -34,4 +35,8 @@ fun setupCupcakeNavHost() {
         }
         CupcakeApp(navController = navController)
     }
+}
+@Test
+fun cupcakenavhost_verifystartDestination(){
+    assertEquals(CupcakeScreen.Start.name, navController.currentBackStackEntry?.destination?.route)
 }
